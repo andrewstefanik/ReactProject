@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableHighlight, Image, Dimensions, TextInput } from 'react-native';
 import Camera from 'react-native-camera';
 
+
 let width = Dimensions.get('window').width;
 let height = Dimensions.get('window').height;
 
@@ -12,11 +13,21 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "transparent",
     },
+    camera: {
+        position: "absolute",
+        justifyContent: "center",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: height * .35
+    },
     image: {
         position: "absolute",
+        justifyContent: "center",
         top: 0,
-        width: width,
-        height: height * .6
+        left: 0,
+        right: 0,
+        bottom: height * .35
     },
     buttonBar: {
         flexDirection: "row",
@@ -101,7 +112,7 @@ export default class Cam extends Component {
         if (this.state.pictureUri) {
             return (
                 <View style={styles.container}>
-                    <Image style={styles.image} source={{ uri: this.state.pictureUri }} resizeMode="contain"/>
+                    <Image style={styles.camera} source={{ uri: this.state.pictureUri }}/>
                     <Text>Longitude: {this.state.longitude} latitude: {this.state.latitude}</Text>
                     {/* <TextInput placeholder={"Description"}></TextInput> */}
                     <View style={styles.buttonBar}>
@@ -116,24 +127,26 @@ export default class Cam extends Component {
             )
         } else {
             return (
-                <Camera
-                    ref={(cam) =>{this.camera = cam;}}
-                    style={styles.container}
-                    type={this.state.cameraType}
-                    captureTarget = {this.state.captureTarget}
-                    flashMode = {this.state.flashMode}>
+                <View style={styles.container}>
+                    <Camera
+                        ref={(cam) =>{this.camera = cam;}}
+                        style={styles.camera}
+                        type={this.state.cameraType}
+                        captureTarget = {this.state.captureTarget}
+                        flashMode = {this.state.flashMode}>
+                    </Camera>
                     <View style={styles.buttonBar}>
-                        <TouchableHighlight style={styles.button} onPress={this.switchCamera}>
-                            <Text style={styles.buttonText}>Flip</Text>
+                        <TouchableHighlight style={styles.buttonTwo} onPress={this.switchCamera}>
+                            <Text style={styles.buttonTextTwo}>Flip</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight style={styles.button} onPress={this.takePicture}>
-                            <Text style={styles.buttonText}>Take</Text>
+                        <TouchableHighlight style={styles.buttonTwo} onPress={this.takePicture}>
+                            <Text style={styles.buttonTextTwo}>Take</Text>
                         </TouchableHighlight>
-                        <TouchableHighlight style={styles.button} onPress={this.flashMode}>
-                            <Text style={styles.buttonText}>Flash</Text>
+                        <TouchableHighlight style={styles.buttonTwo} onPress={this.flashMode}>
+                            <Text style={styles.buttonTextTwo}>Flash</Text>
                         </TouchableHighlight>
                     </View>
-                </Camera>
+            </View>
             );
         }
     }

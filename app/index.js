@@ -1,6 +1,7 @@
 'use strict';
 
 import { AppRegistry } from 'react-native';
-import Cam from './components/Camera';
+// import Cam from './components/Camera';
+import Maps from './components/Maps'
 
-AppRegistry.registerComponent('ReactProject', () => Cam);
+AppRegistry.registerComponent('ReactProject', () => Maps);
