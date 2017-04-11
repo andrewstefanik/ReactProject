@@ -1,6 +1,9 @@
 package com.reactproject;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 
 public class MainActivity extends ReactActivity {
 
